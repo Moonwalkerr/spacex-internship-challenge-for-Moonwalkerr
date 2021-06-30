@@ -1,10 +1,8 @@
-import "./styles.css";
 import { useState, useEffect } from "react";
 import BootstrapTable from "react-bootstrap-table-next";
 import axios from "axios";
 import paginationFactory from "react-bootstrap-table2-paginator";
-// import * as ReactBootstrap from "react-bootstrap";
-import DropDown from "./drop";
+// import DropDown from "./drop";
 
 const DashboardTable = () => {
   const [tableData, setTableData] = useState([]);
@@ -80,7 +78,7 @@ const DashboardTable = () => {
 
   return (
     <div className="App">
-      <DropDown />
+      {/* <DropDown /> */}
       <BootstrapTable
         keyField="flight_number"
         data={tableData}
