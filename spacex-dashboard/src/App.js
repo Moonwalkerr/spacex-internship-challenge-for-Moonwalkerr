@@ -1,9 +1,7 @@
+import Dashboard from "./UI/Dashboard";
+
 const App = () => {
-  return (
-    <div className="App">
-      <h2>SpaceX dashboard</h2>
-    </div>
-  );
+  return <Dashboard />;
 };
 
 export default App;
