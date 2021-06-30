@@ -1,6 +1,8 @@
 .mainCont {
-  height: 100%;
-  width: 100%;
+  margin: auto;
   display: grid;
   place-items: center;
+  height: 676px;
+  width: 952px;
+  border-radius: 6px;
 }
