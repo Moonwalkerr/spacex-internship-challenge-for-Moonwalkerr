@@ -45,11 +45,15 @@ const DropDown = ({ setDataArr, setLoading }) => {
     <div
       style={{
         margin: "20px auto",
-        height: "16px",
         width: "100%",
         display: "flex",
         alignItems: "center",
         justifyContent: "flex-end",
+        fontFamily: "Helvetica Neue",
+        fontStyle: "normal",
+        fontWeight: 500,
+        fontSze: 16,
+        letterSpacing: "-0.01em",
       }}
     >
       <FiFilter />

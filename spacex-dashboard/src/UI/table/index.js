@@ -89,6 +89,10 @@ const DashboardTable = () => {
       backgroundColor: "#F4F5F7",
       borderBottom: "none",
       textAlign: "center",
+      fontFamily: "Inter",
+      fontStyle: "normal",
+      fontWeight: 600,
+      color: "#4B5563",
     };
   }
   // Common stylings for Column
@@ -132,6 +136,11 @@ const DashboardTable = () => {
       border: "none",
       margin: "60px",
       cursor: "pointer",
+      fontFamily: "Inter",
+      fontStyle: "normal",
+      fontWeight: "normal",
+      fontSize: 12,
+      color: "#1F2937",
     };
   };
 
