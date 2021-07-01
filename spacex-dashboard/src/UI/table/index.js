@@ -5,6 +5,7 @@ import paginationFactory from "react-bootstrap-table2-paginator";
 import DropDown from "./dropDown";
 import getData from "../../utils/functions";
 import Spinner from "./spinner";
+import Modal from "./modal";
 
 const DashboardTable = () => {
   // spacex api launch url
@@ -147,7 +148,7 @@ const DashboardTable = () => {
   // row Event onClick handler
   const rowEvents = {
     onClick: (e, row, rowIndex) => {
-      console.log(row);
+      return <Modal />;
     },
   };
 
