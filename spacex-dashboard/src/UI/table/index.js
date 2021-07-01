@@ -6,11 +6,12 @@ import paginationFactory from "react-bootstrap-table2-paginator";
 import DropDown from "./dropDown";
 
 const DashboardTable = () => {
-  const [tableData, setTableData] = useState([]);
-
-  const [loading, setLoading] = useState(true);
-
+  // spacex api launch url
   const URL = "https://api.spacexdata.com/v3/launches";
+  // table Data piece of state for table
+  const [tableData, setTableData] = useState([]);
+  // loading state
+  const [loading, setLoading] = useState(true);
 
   const getData = async (url) => {
     try {
@@ -71,6 +72,7 @@ const DashboardTable = () => {
       text: "Launch Status",
       formatter: statusFormatter,
       headerStyle: { backgroundColor: "#F4F5F7", borderBottom: "none" },
+      style: getStatusStyle,
     },
     {
       dataField: "rocket.rocket_name",
@@ -86,6 +88,24 @@ const DashboardTable = () => {
     else return "Upcoming";
   }
 
+  function getStatusStyle(cell, row, rowIndex, formatExtraData) {
+    if (cell) {
+      return {
+        textAlign: "center",
+        color: "green",
+      };
+    } else if (!cell)
+      return {
+        textAlign: "center",
+        color: "red",
+      };
+    else
+      return {
+        textAlign: "center",
+        // color: "red",
+      };
+  }
+
   return (
     <div>
       <DropDown />
@@ -97,6 +117,7 @@ const DashboardTable = () => {
         columns={columns}
         pagination={pagination}
       />
+      {loading && <h2>Loading...</h2>}
     </div>
   );
 };
