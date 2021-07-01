@@ -99,7 +99,7 @@ const DashboardTable = () => {
   function statusFormatter(cell, row, rowIndex, formatExtraData) {
     if (cell) {
       return "Success";
-    } else if (!cell) return "Failure";
+    } else if (cell === false) return "Failure";
     else return "Upcoming";
   }
 
@@ -112,7 +112,7 @@ const DashboardTable = () => {
         textAlign: "center",
         textShadow: " -1px 2px 7px green",
       };
-    } else if (!cell)
+    } else if (cell === false)
       return {
         textAlign: "center",
         color: "red",
@@ -121,7 +121,6 @@ const DashboardTable = () => {
     else
       return {
         textAlign: "center",
-        color: "yellow",
         textShadow: " -1px 2px 7px yellow",
       };
   }
@@ -131,6 +130,7 @@ const DashboardTable = () => {
     return {
       border: "none",
       margin: "60px",
+      cursor: "pointer",
     };
   };
 
