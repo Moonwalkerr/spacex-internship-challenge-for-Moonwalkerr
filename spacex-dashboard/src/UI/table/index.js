@@ -150,12 +150,15 @@ const DashboardTable = () => {
         data={tableData}
         rowStyle={rowStyle}
         rowEvents={rowEvents}
-        // bordered={false}
         columns={columns}
         pagination={pagination}
       />
-      {loading && <Spinner />}
-      {!loading && tableData.length === 0 && <h4>No Results</h4>}
+      <div className="stateHelper">
+        {loading && <Spinner />}
+        {!loading && tableData.length === 0 && (
+          <p>No Results found for the specified filter</p>
+        )}
+      </div>
     </div>
   );
 };
