@@ -4,6 +4,7 @@ import BootstrapTable from "react-bootstrap-table-next";
 import paginationFactory from "react-bootstrap-table2-paginator";
 import DropDown from "./dropDown";
 import getData from "../../utils/functions";
+import Spinner from "./spinner";
 
 const DashboardTable = () => {
   // spacex api launch url
@@ -153,7 +154,7 @@ const DashboardTable = () => {
         columns={columns}
         pagination={pagination}
       />
-      {loading && <h2>Loading...</h2>}
+      {loading && <Spinner />}
       {!loading && tableData.length === 0 && <h4>No Results</h4>}
     </div>
   );
