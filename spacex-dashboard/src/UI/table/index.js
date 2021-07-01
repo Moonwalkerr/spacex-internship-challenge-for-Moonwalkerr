@@ -143,11 +143,7 @@ const DashboardTable = () => {
 
   return (
     <div>
-      <DropDown
-        dataArr={tableData}
-        setDataArr={setTableData}
-        setLoading={setLoading}
-      />
+      <DropDown setDataArr={setTableData} setLoading={setLoading} />
       <BootstrapTable
         className="table"
         keyField="flight_number"

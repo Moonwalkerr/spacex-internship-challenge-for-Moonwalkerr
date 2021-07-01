@@ -4,7 +4,7 @@ import getData from "../../utils/functions";
 
 const { DropdownButton, Dropdown } = require("react-bootstrap");
 
-const DropDown = ({ dataArr, setDataArr, setLoading }) => {
+const DropDown = ({ setDataArr, setLoading }) => {
   // spacex api launch url
   const URL = "https://api.spacexdata.com/v3/launches";
 
