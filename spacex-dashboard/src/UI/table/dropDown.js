@@ -30,8 +30,9 @@ const DropDown = ({ setDataArr, setLoading }) => {
       // getData(URL, setDataArr, setLoading);
     } else if (title === "Upcoming Launches") {
       setDataArr(
-        // considering null launch_success status as upcoming
-        permanentDataArr.filter((data) => data.launch_success === null)
+        // since launch_success for upcoming launches were not available at the time of this code creation, so considering "upcoming" might be nearest possibility for the same
+        // before few commits, I considered "null" as launch_success for upcoming data, but the year was 2020, which won't be considered under upcoming launches
+        permanentDataArr.filter((data) => data.launch_success === "upcoming")
       );
     } else if (title === "Failed Launches") {
       // not doing the filter dynamicly due to a null value at 110 of the data array
