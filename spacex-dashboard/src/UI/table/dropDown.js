@@ -11,10 +11,10 @@ const DropDown = ({ dataArr }) => {
       style={{
         margin: "20px auto",
         height: "16px",
-        width: "241px",
+        width: "100%",
         display: "flex",
         alignItems: "center",
-        justifyContent: "center",
+        justifyContent: "flex-end",
       }}
     >
       <FiFilter />
