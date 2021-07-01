@@ -67,7 +67,11 @@ const DashboardTable = () => {
       dataField: "launch_success",
       text: "Launch Status",
       formatter: statusFormatter,
-      headerStyle: commonHeaderStylings,
+      headerStyle: {
+        backgroundColor: "#F4F5F7",
+        borderBottom: "none",
+        textAlign: "center",
+      },
       style: getStatusStyle,
     },
     {
@@ -103,20 +107,22 @@ const DashboardTable = () => {
   function getStatusStyle(cell, row, rowIndex, formatExtraData) {
     if (cell) {
       return {
+        height: "21px",
+        width: "10%",
         textAlign: "center",
-        color: "green",
-        textShadow: " -1px 2px 10px green",
+        textShadow: " -1px 2px 7px green",
       };
     } else if (!cell)
       return {
         textAlign: "center",
         color: "red",
-        textShadow: " -1px 2px 10px red",
+        textShadow: " -1px 2px 7px red",
       };
     else
       return {
         textAlign: "center",
-        // color: "red",
+        color: "yellow",
+        textShadow: " -1px 2px 7px yellow",
       };
   }
 
@@ -124,6 +130,7 @@ const DashboardTable = () => {
   const rowStyle = (row, rowIndex) => {
     return {
       border: "none",
+      margin: "60px",
     };
   };
 
