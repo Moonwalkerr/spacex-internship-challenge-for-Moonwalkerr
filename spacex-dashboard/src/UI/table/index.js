@@ -1,11 +1,10 @@
-import "./styles.css";
 import { useState, useEffect } from "react";
 import BootstrapTable from "react-bootstrap-table-next";
 import paginationFactory from "react-bootstrap-table2-paginator";
 import DropDown from "./dropDown";
 import getData from "../../utils/functions";
 import Spinner from "./spinner";
-import Modal from "./modal";
+import MyVerticallyCenteredModal from "./modal";
 
 const DashboardTable = () => {
   // spacex api launch url
@@ -15,6 +14,10 @@ const DashboardTable = () => {
   // loading state
   const [loading, setLoading] = useState(true);
 
+  // Showing modal piece of state
+  const [modalShow, setModalShow] = useState(false);
+
+  // custom pagination settings for table
   const pagination = paginationFactory({
     page: 1,
     sizePerPage: 12,
@@ -148,7 +151,7 @@ const DashboardTable = () => {
   // row Event onClick handler
   const rowEvents = {
     onClick: (e, row, rowIndex) => {
-      return <Modal />;
+      return setModalShow(true);
     },
   };
 
@@ -162,6 +165,10 @@ const DashboardTable = () => {
         rowEvents={rowEvents}
         columns={columns}
         pagination={pagination}
+      />
+      <MyVerticallyCenteredModal
+        show={modalShow}
+        onHide={() => setModalShow(false)}
       />
       <div className="stateHelper">
         {loading && <Spinner />}
