@@ -50,36 +50,61 @@ const DashboardTable = () => {
         backgroundColor: "#F4F5F7",
         borderBottom: "none",
         width: "8%",
+        textAlign: "center",
       },
+      style: commonStylings,
     },
     {
       dataField: "launch_year",
       text: "Launched(UTC)",
-      headerStyle: { backgroundColor: "#F4F5F7", borderBottom: "none" },
+      headerStyle: commonHeaderStylings,
+      style: commonStylings,
     },
     {
       dataField: "rocket.second_stage.payloads[0].orbit",
       text: "Orbit",
-      headerStyle: { backgroundColor: "#F4F5F7", borderBottom: "none" },
+      headerStyle: commonHeaderStylings,
+      style: commonStylings,
     },
     {
       dataField: "launch_site.site_name",
       text: "Location",
-      headerStyle: { backgroundColor: "#F4F5F7", borderBottom: "none" },
+      headerStyle: commonHeaderStylings,
+      style: commonStylings,
     },
     {
       dataField: "launch_success",
       text: "Launch Status",
       formatter: statusFormatter,
-      headerStyle: { backgroundColor: "#F4F5F7", borderBottom: "none" },
+      headerStyle: commonHeaderStylings,
       style: getStatusStyle,
     },
     {
       dataField: "rocket.rocket_name",
       text: "Rocket",
-      headerStyle: { backgroundColor: "#F4F5F7", borderBottom: "none" },
+      style: commonStylings,
+      headerStyle: commonHeaderStylings,
     },
   ];
+
+  // common stylings for column header
+  function commonHeaderStylings() {
+    return {
+      backgroundColor: "#F4F5F7",
+      borderBottom: "none",
+      textAlign: "center",
+    };
+  }
+  // Common stylings for Column
+
+  // Common stylings for Column
+  function commonStylings() {
+    return { textAlign: "center" };
+  }
+  // Common stylings for Column
+  function commonStylings() {
+    return { textAlign: "center" };
+  }
 
   // launch status column cell value formatter
   function statusFormatter(cell, row, rowIndex, formatExtraData) {
@@ -108,6 +133,13 @@ const DashboardTable = () => {
       };
   }
 
+  // row stylings for the table
+  const rowStyle = (row, rowIndex) => {
+    return {
+      border: "none",
+    };
+  };
+
   return (
     <div>
       <DropDown />
@@ -115,6 +147,7 @@ const DashboardTable = () => {
         className="table"
         keyField="flight_number"
         data={tableData}
+        rowStyle={rowStyle}
         // bordered={false}
         columns={columns}
         pagination={pagination}
