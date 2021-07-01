@@ -96,12 +96,6 @@ const DashboardTable = () => {
     };
   }
   // Common stylings for Column
-
-  // Common stylings for Column
-  function commonStylings() {
-    return { textAlign: "center" };
-  }
-  // Common stylings for Column
   function commonStylings() {
     return { textAlign: "center" };
   }
