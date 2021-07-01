@@ -16,28 +16,34 @@ const TableModal = (props) => {
   function getStatusStyle(value) {
     if (value) {
       return {
-        height: "21px",
-        width: "10%",
         textAlign: "center",
-        textShadow: " -1px 2px 7px green",
+        fontSize: 18,
+        borderRadius: 20,
+        width: 100,
+        backgroundColor: "#DEF7EC",
       };
     } else if (value === false)
       return {
         textAlign: "center",
-        color: "red",
-        textShadow: " -1px 2px 7px red",
+        fontSize: 18,
+        borderRadius: 20,
+        width: 100,
+        backgroundColor: "#FDE2E1",
       };
     else
       return {
         textAlign: "center",
-        textShadow: " -1px 2px 7px yellow",
+        fontSize: 18,
+        borderRadius: 20,
+        width: 100,
+        backgroundColor: "yellow",
       };
   }
   return (
     <Modal
       key={flight_number}
       {...props}
-      size="lg"
+      size="md"
       aria-labelledby="contained-modal-title-vcenter"
       centered
     >
@@ -45,14 +51,13 @@ const TableModal = (props) => {
         <Modal.Title
           style={{
             display: "flex",
-            width: "60%",
             justifyContent: "space-evenly",
           }}
           id="contained-modal-title-vcenter"
         >
           <img
             style={{
-              height: "100px",
+              height: "80px",
             }}
             src={props.data.links.mission_patch_small}
             alt={"mission-img"}
@@ -74,25 +79,27 @@ const TableModal = (props) => {
             >
               <h2
                 style={{
+                  color: "#1F2937",
+                  fontSize: 28,
                   display: "flex",
                   alignItems: "flex-start",
                   width: "300px",
                   justifyContent: "space-around",
+                  fontFamily: "Inter",
+                  fontStyle: "medium",
+                  fill: "solid #1F2937",
                 }}
               >
                 {mission_name}
-                <span
-                  style={{
-                    fontSize: 20,
-                    color: "green",
-                  }}
-                >
+                <span style={getStatusStyle(launch_success)}>
                   {statusFormatter(launch_success)}
                 </span>
               </h2>
               <p
                 style={{
                   marginLeft: 30,
+                  color: "#374151",
+                  fontSize: 17,
                 }}
               >
                 {props.data.rocket.rocket_name}

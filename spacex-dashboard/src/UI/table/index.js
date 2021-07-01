@@ -75,6 +75,7 @@ const DashboardTable = () => {
       text: "Launch Status",
       formatter: statusFormatter,
       headerStyle: {
+        width: 150,
         backgroundColor: "#F4F5F7",
         borderBottom: "none",
         textAlign: "center",
@@ -108,9 +109,8 @@ const DashboardTable = () => {
 
   // launch status column cell value formatter
   function statusFormatter(cell, row, rowIndex, formatExtraData) {
-    if (cell) {
-      return "Success";
-    } else if (cell === false) return "Failure";
+    if (cell) return "Success";
+    else if (cell === false) return "Failure";
     else return "Upcoming";
   }
 
@@ -118,21 +118,30 @@ const DashboardTable = () => {
   function getStatusStyle(cell, row, rowIndex, formatExtraData) {
     if (cell) {
       return {
-        height: "21px",
-        width: "10%",
         textAlign: "center",
-        textShadow: " -1px 2px 7px green",
+        fontSize: 12,
+        fontWeight: "500",
+        borderRadius: 20,
+        width: 50,
+        backgroundColor: "#DEF7EC",
       };
     } else if (cell === false)
       return {
+        fontWeight: "500",
         textAlign: "center",
-        color: "red",
-        textShadow: " -1px 2px 7px red",
+        fontSize: 12,
+        borderRadius: 20,
+        width: 50,
+        backgroundColor: "#FDE2E1",
       };
     else
       return {
+        fontWeight: "500",
         textAlign: "center",
-        textShadow: " -1px 2px 7px yellow",
+        fontSize: 12,
+        borderRadius: 20,
+        width: 50,
+        backgroundColor: "yellow",
       };
   }
 
