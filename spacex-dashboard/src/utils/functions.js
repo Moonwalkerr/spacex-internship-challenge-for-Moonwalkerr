@@ -5,6 +5,7 @@ const getData = async (url, tableDataSetter, loadingSetter) => {
   try {
     const data = await axios.get(url);
     tableDataSetter(data.data);
+    // loadingsetter is optional argument since loading state can or can't be required
     if (loadingSetter) {
       loadingSetter(false);
     }
