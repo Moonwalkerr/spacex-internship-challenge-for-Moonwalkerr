@@ -4,7 +4,7 @@ const ModalDesc = ({ name, data }) => {
     <div
       style={{
         display: "flex",
-        width: "30%",
+        width: "60%",
         alignItems: "flex-start",
         justifyContent: "space-between",
       }}
