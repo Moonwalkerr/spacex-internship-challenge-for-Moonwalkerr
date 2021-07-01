@@ -4,6 +4,7 @@ import BootstrapTable from "react-bootstrap-table-next";
 import paginationFactory from "react-bootstrap-table2-paginator";
 import DropDown from "./dropDown";
 import getData from "../../utils/functions";
+
 const DashboardTable = () => {
   // spacex api launch url
   const URL = "https://api.spacexdata.com/v3/launches";
