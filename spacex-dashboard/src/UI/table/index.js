@@ -81,6 +81,7 @@ const DashboardTable = () => {
     },
   ];
 
+  // launch status column cell value formatter
   function statusFormatter(cell, row, rowIndex, formatExtraData) {
     if (cell) {
       return "Success";
@@ -88,6 +89,7 @@ const DashboardTable = () => {
     else return "Upcoming";
   }
 
+  // launch status column styles handler
   function getStatusStyle(cell, row, rowIndex, formatExtraData) {
     if (cell) {
       return {
