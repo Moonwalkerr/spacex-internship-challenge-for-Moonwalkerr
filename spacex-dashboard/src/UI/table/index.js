@@ -134,6 +134,13 @@ const DashboardTable = () => {
     };
   };
 
+  // row Event onClick handler
+  const rowEvents = {
+    onClick: (e, row, rowIndex) => {
+      console.log(row);
+    },
+  };
+
   return (
     <div>
       <DropDown />
@@ -142,6 +149,7 @@ const DashboardTable = () => {
         keyField="flight_number"
         data={tableData}
         rowStyle={rowStyle}
+        rowEvents={rowEvents}
         // bordered={false}
         columns={columns}
         pagination={pagination}
