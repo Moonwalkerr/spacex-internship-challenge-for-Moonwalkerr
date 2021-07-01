@@ -1,5 +1,6 @@
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
+import ModalDesc from "./modalDesc";
 
 const TableModal = (props) => {
   const { mission_name, flight_number, launch_success, details } = props.data;
@@ -102,16 +103,27 @@ const TableModal = (props) => {
       </Modal.Header>
       <Modal.Body>
         <p>{details}</p>
-        <div
-          style={{
-            display: "flex",
-            width: "20%",
-            alignItems: "flex-start",
-            justifyContent: "space-between",
-          }}
-        >
-          <p>Flight number</p> <span> {flight_number} </span>
-        </div>
+        {/* Launch Details */}
+        <ModalDesc name="Flight Number" data={flight_number} />
+        <ModalDesc name="Mission Name" data={mission_name} />
+        <ModalDesc name="Rocket Type" data={props.data.rocket.rocket_type} />
+        <ModalDesc
+          name="Manufacturer"
+          data={props.data.rocket.second_stage.payloads[0].manufacturer}
+        />
+        <ModalDesc
+          name="Nationality"
+          data={props.data.rocket.second_stage.payloads[0].nationality}
+        />
+        <ModalDesc
+          name="Payload Type"
+          data={props.data.rocket.second_stage.payloads[0].payload_type}
+        />
+        <ModalDesc
+          name="Orbit"
+          data={props.data.rocket.second_stage.payloads[0].orbit}
+        />
+        <ModalDesc name="Launch Site" data={props.data.launch_site.site_name} />
       </Modal.Body>
 
       <Modal.Footer>
