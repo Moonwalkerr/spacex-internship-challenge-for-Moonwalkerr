@@ -26,7 +26,8 @@ const DropDown = ({ dataArr, setDataArr, setLoading }) => {
       );
     } else if (title === "All Launches") {
       // resetting the tableData
-      getData(URL, setDataArr, setLoading);
+      setDataArr(permanentDataArr);
+      // getData(URL, setDataArr, setLoading);
     } else if (title === "Upcoming Launches") {
       setDataArr(
         // considering null launch_success status as upcoming
