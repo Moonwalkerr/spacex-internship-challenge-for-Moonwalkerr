@@ -1,9 +1,11 @@
 import "./styles.css";
 import { useState, useEffect } from "react";
 import BootstrapTable from "react-bootstrap-table-next";
-import axios from "axios";
 import paginationFactory from "react-bootstrap-table2-paginator";
 import DropDown from "./dropDown";
+import getData from "../../utils/functions";
+import Spinner from "./spinner";
+import TableModal from "./modal";
 
 const DashboardTable = () => {
   // spacex api launch url
@@ -13,15 +15,11 @@ const DashboardTable = () => {
   // loading state
   const [loading, setLoading] = useState(true);
 
-  const getData = async (url) => {
-    try {
-      const data = await axios.get(url);
-      setTableData(data.data);
-      setLoading(false);
-    } catch (e) {
-      alert(e.message);
-    }
-  };
+  // Showing modal piece of state
+  const [modalShow, setModalShow] = useState(false);
+  const [modalData, setModalData] = useState([]);
+
+  // custom pagination settings for table
   const pagination = paginationFactory({
     page: 1,
     sizePerPage: 12,
@@ -39,7 +37,7 @@ const DashboardTable = () => {
     },
   });
   useEffect(() => {
-    getData(URL);
+    getData(URL, setTableData, setLoading);
   }, []);
 
   const columns = [
@@ -76,7 +74,12 @@ const DashboardTable = () => {
       dataField: "launch_success",
       text: "Launch Status",
       formatter: statusFormatter,
-      headerStyle: commonHeaderStylings,
+      headerStyle: {
+        width: 150,
+        backgroundColor: "#F4F5F7",
+        borderBottom: "none",
+        textAlign: "center",
+      },
       style: getStatusStyle,
     },
     {
@@ -93,6 +96,10 @@ const DashboardTable = () => {
       backgroundColor: "#F4F5F7",
       borderBottom: "none",
       textAlign: "center",
+      fontFamily: "Inter",
+      fontStyle: "normal",
+      fontWeight: 600,
+      color: "#4B5563",
     };
   }
   // Common stylings for Column
@@ -102,9 +109,8 @@ const DashboardTable = () => {
 
   // launch status column cell value formatter
   function statusFormatter(cell, row, rowIndex, formatExtraData) {
-    if (cell) {
-      return "Success";
-    } else if (!cell) return "Failure";
+    if (cell) return "Success";
+    else if (cell === false) return "Failure";
     else return "Upcoming";
   }
 
@@ -113,17 +119,29 @@ const DashboardTable = () => {
     if (cell) {
       return {
         textAlign: "center",
-        color: "green",
+        fontSize: 12,
+        fontWeight: "500",
+        borderRadius: 20,
+        width: 50,
+        backgroundColor: "#DEF7EC",
       };
-    } else if (!cell)
+    } else if (cell === false)
       return {
+        fontWeight: "500",
         textAlign: "center",
-        color: "red",
+        fontSize: 12,
+        borderRadius: 20,
+        width: 50,
+        backgroundColor: "#FDE2E1",
       };
     else
       return {
+        fontWeight: "500",
         textAlign: "center",
-        // color: "red",
+        fontSize: 12,
+        borderRadius: 20,
+        width: 50,
+        backgroundColor: "yellow",
       };
   }
 
@@ -131,30 +149,48 @@ const DashboardTable = () => {
   const rowStyle = (row, rowIndex) => {
     return {
       border: "none",
+      margin: "60px",
+      cursor: "pointer",
+      fontFamily: "Inter",
+      fontStyle: "normal",
+      fontWeight: "normal",
+      fontSize: 12,
+      color: "#1F2937",
     };
   };
 
   // row Event onClick handler
   const rowEvents = {
     onClick: (e, row, rowIndex) => {
-      console.log(row);
+      setModalData(row);
+      setModalShow(true);
     },
   };
 
   return (
     <div>
-      <DropDown />
+      <DropDown setDataArr={setTableData} setLoading={setLoading} />
       <BootstrapTable
-        className="table"
         keyField="flight_number"
         data={tableData}
         rowStyle={rowStyle}
         rowEvents={rowEvents}
-        // bordered={false}
         columns={columns}
         pagination={pagination}
       />
-      {loading && <h2>Loading...</h2>}
+      {modalShow && (
+        <TableModal
+          show={modalShow}
+          data={modalData}
+          onHide={() => setModalShow(false)}
+        />
+      )}
+      <div className="stateHelper">
+        {loading && <Spinner />}
+        {!loading && tableData.length === 0 && (
+          <p>No Results found for the specified filter</p>
+        )}
+      </div>
     </div>
   );
 };
