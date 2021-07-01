@@ -8,3 +8,13 @@
   border: 1px solid #e4e4e7 !important;
   background-color: #f4f5f7 !important;
 }
+
+.stateHelper {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 14px;
+  color: #374151;
+  text-align: center;
+}
