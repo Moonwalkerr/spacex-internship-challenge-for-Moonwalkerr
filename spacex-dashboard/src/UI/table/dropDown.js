@@ -1,38 +1,32 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FiFilter } from "react-icons/fi";
 import getData from "../../utils/functions";
 
 const { DropdownButton, Dropdown } = require("react-bootstrap");
 
 const DropDown = ({ dataArr, setDataArr, setLoading }) => {
-  const [dropDownTitle, setDropDownTitle] = useState("All Launches");
-
   // spacex api launch url
   const URL = "https://api.spacexdata.com/v3/launches";
+  const [dropDownTitle, setDropDownTitle] = useState("All Launches");
+  const [permanentDataArr, setPermanentDataArr] = useState([]);
+  useEffect(() => {
+    getData(URL, setPermanentDataArr);
+  }, [permanentDataArr, setPermanentDataArr]);
   const handleToggle = (title) => {
     setDropDownTitle(title);
     if (title === "Successful Launches") {
-      // resetting the tableData
-      getData(URL, setDataArr, setLoading);
       // filterting acc to launch success
-      setDataArr(dataArr.filter((data) => data.launch_success));
+      setDataArr(permanentDataArr.filter((data) => data.launch_success));
     } else if (title === "All Launches") {
       // resetting the tableData
       getData(URL, setDataArr, setLoading);
     } else if (title === "Upcoming Launches") {
-      // resetting the tableData
-      getData(URL, setDataArr, setLoading);
-      // filtering the table data acc to upcoming launches
-      setDataArr(dataArr.filter((data) => data.launch_status === "upcoming"));
+      setDataArr(
+        permanentDataArr.filter((data) => data.launch_success === "upcoming")
+      );
     } else if (title === "Failed Launches") {
-      // resetting the tableData
-      getData(URL, setDataArr, setLoading);
-      // filterting acc to Failed launches
-      setDataArr(dataArr.filter((data) => data.launch_status === false));
-    } else {
-      // resetting the tableData
-      getData(URL, setDataArr, setLoading);
-    }
+      setDataArr(permanentDataArr.filter((data) => !data.launch_success));
+    } else return;
   };
   return (
     <div
