@@ -1,7 +1,10 @@
+import "./styles.css";
 import Loader from "../assets/Loader.png";
 
 const Spinner = () => {
-  return <img src={Loader} alt="Loading..." />;
+  return (
+    <img className="rotate linear infinite" src={Loader} alt="Loading..." />
+  );
 };
 
 export default Spinner;
