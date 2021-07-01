@@ -114,11 +114,13 @@ const DashboardTable = () => {
       return {
         textAlign: "center",
         color: "green",
+        textShadow: " -1px 2px 10px green",
       };
     } else if (!cell)
       return {
         textAlign: "center",
         color: "red",
+        textShadow: " -1px 2px 10px red",
       };
     else
       return {
