@@ -145,7 +145,6 @@ const DashboardTable = () => {
     <div>
       <DropDown setDataArr={setTableData} setLoading={setLoading} />
       <BootstrapTable
-        className="table"
         keyField="flight_number"
         data={tableData}
         rowStyle={rowStyle}
@@ -155,6 +154,7 @@ const DashboardTable = () => {
         pagination={pagination}
       />
       {loading && <h2>Loading...</h2>}
+      {!loading && tableData.length === 0 && <h4>No Results</h4>}
     </div>
   );
 };
