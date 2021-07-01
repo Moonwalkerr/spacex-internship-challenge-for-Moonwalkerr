@@ -1,10 +1,9 @@
 import "./styles.css";
 import { useState, useEffect } from "react";
 import BootstrapTable from "react-bootstrap-table-next";
-import axios from "axios";
 import paginationFactory from "react-bootstrap-table2-paginator";
 import DropDown from "./dropDown";
-
+import getData from "../../utils/functions";
 const DashboardTable = () => {
   // spacex api launch url
   const URL = "https://api.spacexdata.com/v3/launches";
@@ -13,15 +12,6 @@ const DashboardTable = () => {
   // loading state
   const [loading, setLoading] = useState(true);
 
-  const getData = async (url) => {
-    try {
-      const data = await axios.get(url);
-      setTableData(data.data);
-      setLoading(false);
-    } catch (e) {
-      alert(e.message);
-    }
-  };
   const pagination = paginationFactory({
     page: 1,
     sizePerPage: 12,
@@ -39,7 +29,7 @@ const DashboardTable = () => {
     },
   });
   useEffect(() => {
-    getData(URL);
+    getData(URL, setTableData, setLoading);
   }, []);
 
   const columns = [
