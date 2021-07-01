@@ -3,9 +3,12 @@ import { FiFilter } from "react-icons/fi";
 
 const { DropdownButton, Dropdown } = require("react-bootstrap");
 
-const DropDown = ({ dataArr }) => {
+const DropDown = ({ dataArr, setDataArr }) => {
   const [dropDownTitle, setDropDownTitle] = useState("All Launches");
 
+  const handleToggle = (title) => {
+    setDropDownTitle(title);
+  };
   return (
     <div
       style={{
@@ -27,30 +30,28 @@ const DropDown = ({ dataArr }) => {
       >
         <Dropdown.Item
           eventKey="1"
-          onClick={() => setDropDownTitle("All launches")}
+          onClick={() => handleToggle("All Launches")}
         >
           All Launches
         </Dropdown.Item>
         <Dropdown.Item
           eventKey="2"
-          onClick={() => setDropDownTitle("Upcoming Launches")}
+          onClick={() => handleToggle("Upcoming Launches")}
         >
           Upcoming Launches
         </Dropdown.Item>
         <Dropdown.Item
           eventKey="3"
-          onClick={() => setDropDownTitle("Successful Launches")}
+          onClick={() => handleToggle("Successful Launches")}
         >
           Successful Launches
         </Dropdown.Item>
         <Dropdown.Item
-          onClick={() => setDropDownTitle("Failed Launches")}
+          onClick={() => handleToggle("Failed Launches")}
           eventKey="4"
         >
           Failed Launches
         </Dropdown.Item>
-        <Dropdown.Divider />
-        <Dropdown.Item eventKey="5">Separated link</Dropdown.Item>
       </DropdownButton>
     </div>
   );
