@@ -5,7 +5,9 @@ const getData = async (url, tableDataSetter, loadingSetter) => {
   try {
     const data = await axios.get(url);
     tableDataSetter(data.data);
-    loadingSetter(false);
+    if (loadingSetter) {
+      loadingSetter(false);
+    }
   } catch (e) {
     alert(e.message);
   }
