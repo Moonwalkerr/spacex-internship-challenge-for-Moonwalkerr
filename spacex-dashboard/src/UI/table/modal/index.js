@@ -150,8 +150,7 @@ const TableModal = (props) => {
               target="_blank"
               rel="noreferrer"
             >
-              {" "}
-              Wikipedia{" "}
+              Wikipedia
             </a>
           </span>
         </p>
