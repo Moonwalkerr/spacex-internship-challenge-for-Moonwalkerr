@@ -2,7 +2,7 @@
 const ImageLink = ({ image, link, alt }) => {
   return (
     <a href={link} target="_blank">
-      <img src={image} alt={alt} />
+      <img style={{ height: 16, width: 16 }} src={image} alt={alt} />
     </a>
   );
 };
