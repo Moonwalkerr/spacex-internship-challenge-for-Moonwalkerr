@@ -53,9 +53,19 @@ const DashboardTable = () => {
       style: commonStylings,
     },
     {
-      dataField: "launch_year",
+      dataField: "launch_date_unix",
       text: "Launched(UTC)",
-      headerStyle: commonHeaderStylings,
+      formatter: launchedFormatter,
+      headerStyle: {
+        backgroundColor: "#F4F5F7",
+        borderBottom: "none",
+        textAlign: "center",
+        fontFamily: "Inter",
+        fontStyle: "normal",
+        fontWeight: 600,
+        width: "26%",
+        color: "#4B5563",
+      },
       style: commonStylings,
     },
     {
@@ -75,7 +85,7 @@ const DashboardTable = () => {
       text: "Launch Status",
       formatter: statusFormatter,
       headerStyle: {
-        width: 150,
+        width: "15%",
         backgroundColor: "#F4F5F7",
         borderBottom: "none",
         textAlign: "center",
@@ -102,6 +112,21 @@ const DashboardTable = () => {
       color: "#4B5563",
     };
   }
+
+  // Launched (UTC) formatter
+  function launchedFormatter(cell, row, rowIndex, formatExtraData) {
+    // converting unix timestamp to millisecs via cell*1000
+    // then creating new Date() object from the same
+    let dateObject = new Date(cell * 1000);
+
+    // coverting dateObj to required date string values acc to requirement
+    let date = dateObject.toLocaleString("en-US", { day: "numeric" }); // date
+    let year = dateObject.toLocaleString("en-US", { year: "numeric" }); // year
+    let month = dateObject.toLocaleString("en-US", { month: "long" }); // month
+    let time = `${dateObject.getHours()} : ${dateObject.getMinutes()}`;
+    return `${date} ${month} ${year} at ${time} `;
+  }
+
   // Common stylings for Column
   function commonStylings() {
     return { textAlign: "center" };

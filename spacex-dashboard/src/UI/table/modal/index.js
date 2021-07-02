@@ -1,10 +1,13 @@
-import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import ModalDesc from "./modalDesc";
+import NasaImg from "./assets/nasaImg.png";
+import WikiImg from "./assets/wikiImg.png";
+import YoutubeImg from "./assets/youtubeImg.png";
+import ImageLink from "./imageLink";
 
 const TableModal = (props) => {
   const { mission_name, flight_number, launch_success, details } = props.data;
-  // launch status column cell value formatter
+
   function statusFormatter(value) {
     if (value) {
       return "Success";
@@ -12,7 +15,6 @@ const TableModal = (props) => {
     else return "Upcoming";
   }
 
-  // launch status column styles handler
   function getStatusStyle(value) {
     if (value) {
       return {
@@ -57,7 +59,8 @@ const TableModal = (props) => {
         >
           <img
             style={{
-              height: "80px",
+              height: 72,
+              width: 72,
             }}
             src={props.data.links.mission_patch_small}
             alt={"mission-img"}
@@ -72,6 +75,7 @@ const TableModal = (props) => {
           >
             <div
               style={{
+                marginLeft: 10,
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "flex-start",
@@ -80,14 +84,15 @@ const TableModal = (props) => {
               <h2
                 style={{
                   color: "#1F2937",
-                  fontSize: 28,
+                  fontSize: 18,
                   display: "flex",
                   alignItems: "flex-start",
                   width: "300px",
-                  justifyContent: "space-around",
+                  justifyContent: "space-between",
                   fontFamily: "Inter",
                   fontStyle: "medium",
                   fill: "solid #1F2937",
+                  fontWeight: "500",
                 }}
               >
                 {mission_name}
@@ -97,19 +102,57 @@ const TableModal = (props) => {
               </h2>
               <p
                 style={{
-                  marginLeft: 30,
                   color: "#374151",
-                  fontSize: 17,
+                  fontSize: 12,
+                  fontFamily: "Inter",
+                  fontWeight: "400",
+                  fontStyle: "regular",
                 }}
               >
                 {props.data.rocket.rocket_name}
+
+                {/* Image Links inside header */}
+                <div
+                  style={{
+                    marginTop: 2,
+                  }}
+                >
+                  <ImageLink
+                    image={NasaImg}
+                    alt="Article"
+                    link={props.data.links.article_link}
+                    // assuming Nasa Image inside Modal will lead to an article of the launch
+                  />
+                  <ImageLink
+                    image={WikiImg}
+                    alt="Wiki"
+                    link={props.data.links.wikipedia}
+                  />
+                  <ImageLink
+                    image={YoutubeImg}
+                    alt="Youtube"
+                    link={props.data.links.video_link}
+                  />
+                </div>
               </p>
             </div>
           </div>
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <p>{details}</p>
+        <p>
+          {details}
+          <span>
+            <a
+              style={{ textDecoration: "none" }}
+              href={props.data.links.wikipedia}
+              target="_blank"
+              rel="noreferrer"
+            >
+              Wikipedia
+            </a>
+          </span>
+        </p>
         {/* Launch Details */}
         <ModalDesc name="Flight Number" data={flight_number} />
         <ModalDesc name="Mission Name" data={mission_name} />
@@ -132,10 +175,6 @@ const TableModal = (props) => {
         />
         <ModalDesc name="Launch Site" data={props.data.launch_site.site_name} />
       </Modal.Body>
-
-      <Modal.Footer>
-        <Button onClick={props.onHide}>Close</Button>
-      </Modal.Footer>
     </Modal>
   );
 };
