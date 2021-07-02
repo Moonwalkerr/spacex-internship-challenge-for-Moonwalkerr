@@ -4,7 +4,7 @@ import ModalDesc from "./modalDesc";
 
 const TableModal = (props) => {
   const { mission_name, flight_number, launch_success, details } = props.data;
-  // launch status column cell value formatter
+
   function statusFormatter(value) {
     if (value) {
       return "Success";
@@ -12,7 +12,6 @@ const TableModal = (props) => {
     else return "Upcoming";
   }
 
-  // launch status column styles handler
   function getStatusStyle(value) {
     if (value) {
       return {
